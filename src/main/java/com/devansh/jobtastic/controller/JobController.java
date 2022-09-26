@@ -4,6 +4,8 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.devansh.jobtastic.models.JobPost;
@@ -19,5 +21,10 @@ public class JobController {
 	@GetMapping("/posts")
 	public List<JobPost> getAllPost(){
 		return repo.findAll();
+	}
+	
+	@PostMapping("/post")
+	public JobPost addPost(@RequestBody JobPost jobPost){
+		return repo.save(jobPost);
 	}
 }
